@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+/* eslint-disable no-unused-vars */
 import './App.css';
+import Componente from './Componente.js';
+import React, { Component } from 'react'; // Importar Component de 'react'
+class App extends Component {
+  nextId = 1;
+  state = {
+    users: [
+      { nome: 'Caique', cargo: 'Desenvolvedor front end', foto: 'user1.png', id: this.nextId++},
+      { nome: 'Lucas', cargo: 'UX/UI', foto: 'user2.png', id: this.nextId++ }
+      
+    ]
+  }
+  criarUser =()=>{
+    console.log("criar usuario");
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render() {
+  
+    return (
+      <div className="App">
+        <div>
+          {this.state.users.map((user) => (
+            <Componente key={user.id} nome={user.nome} cargo={user.cargo} foto={user.foto} />
+          ))}
+        </div>
+        <button className='cadastrar-btn' onClick={this.criarUser}>salvar</button>
+      </div>
+    );
+  }
 }
 
 export default App;
